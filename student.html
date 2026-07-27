@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Portal | Bellevue Youth Debate</title>
+<link rel="icon" href="assets/logo.webp">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand brand-mark">
+      <img src="assets/logo.webp" alt="Bellevue Youth Debate seal">
+      <div class="brand-mark-name">Bellevue Youth Debate</div>
+    </div>
+    <div class="sidebar-role">Student portal</div>
+    <ul class="nav-list">
+      <li><button class="nav-link" data-view="home"><span>Dashboard</span></button></li>
+      <li><button class="nav-link" data-view="homework"><span>Homework</span></button></li>
+      <li><button class="nav-link" data-view="schedule"><span>Schedule</span></button></li>
+      <li><button class="nav-link" data-view="rounds"><span>Rounds &amp; Pairings</span></button></li>
+      <li><button class="nav-link" data-view="attendance"><span>Attendance</span></button></li>
+      <li><button class="nav-link" data-view="account"><span>Account</span></button></li>
+    </ul>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user-name" data-user-name>&nbsp;</div>
+        <div class="sidebar-user-email" data-user-email>&nbsp;</div>
+      </div>
+      <button class="nav-link" data-logout><span>Log out</span></button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <button class="btn btn-ghost btn-icon menu-toggle" aria-label="Menu">&#9776;</button>
+      <div class="eyebrow">Group <span data-user-group style="color:var(--ink); font-weight:700;">&nbsp;</span></div>
+    </div>
+
+    <div id="surveyBanner" class="survey-banner hidden">
+      <div class="survey-banner-text">
+        <strong>Practice check-in is open!</strong>
+        <span>Tap in to confirm you're here.</span>
+      </div>
+      <div class="flex items-center gap-12">
+        <span class="countdown" id="surveyCountdown">5:00</span>
+        <button class="btn btn-primary btn-sm" id="surveyRespondBtn">I'm here</button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- ---------------------------------------------------------- home -->
+      <section class="view-panel" id="view-home">
+        <div class="page-head">
+          <div>
+            <h1>Welcome back, <span id="homeName">friend</span>.</h1>
+            <p>Here's what's coming up.</p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <div class="stat"><div class="stat-value" id="statNextPractice">&ndash;</div><div class="stat-label">Next practice</div></div>
+          <div class="stat"><div class="stat-value" id="statHwDue">&ndash;</div><div class="stat-label">HW due this week</div></div>
+          <div class="stat"><div class="stat-value" id="statAttendance">&ndash;</div><div class="stat-label">Attendance marked (30d)</div></div>
+        </div>
+        <div class="grid-2 mt-24">
+          <div class="card">
+            <div class="card-head"><h2>Up next on the schedule</h2></div>
+            <div id="homeSchedulePreview"><div class="skeleton" style="height:60px;"></div></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>Homework due soon</h2></div>
+            <div id="homeHwPreview"><div class="skeleton" style="height:60px;"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ------------------------------------------------------- homework -->
+      <section class="view-panel" id="view-homework">
+        <div class="page-head"><div><h1>Homework</h1><p>Assignments for your group.</p></div></div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Title</th><th>Description</th><th>Assigned</th><th>Due</th></tr></thead>
+              <tbody id="hwTableBody"><tr><td colspan="4"><div class="skeleton" style="height:20px;"></div></td></tr></tbody>
+            </table>
+          </div>
+          <div id="hwEmpty" class="empty-state hidden"><span class="eyebrow">Nothing here yet</span>No homework has been posted for your group.</div>
+        </div>
+      </section>
+
+      <!-- ------------------------------------------------------- schedule -->
+      <section class="view-panel" id="view-schedule">
+        <div class="page-head"><div><h1>Practice Schedule</h1><p>All sessions for your group.</p></div></div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Date</th><th>Time</th><th>Title</th><th>Location</th><th>Notes</th></tr></thead>
+              <tbody id="scheduleTableBody"><tr><td colspan="5"><div class="skeleton" style="height:20px;"></div></td></tr></tbody>
+            </table>
+          </div>
+          <div id="scheduleEmpty" class="empty-state hidden"><span class="eyebrow">Nothing here yet</span>No schedule has been posted for your group.</div>
+        </div>
+      </section>
+
+      <!-- --------------------------------------------------------- rounds -->
+      <section class="view-panel" id="view-rounds">
+        <div class="page-head"><div><h1>Rounds &amp; Pairings</h1><p>Your rows are highlighted.</p></div></div>
+        <div id="roundsList"><div class="skeleton" style="height:80px;"></div></div>
+        <div id="roundsEmpty" class="empty-state hidden"><span class="eyebrow">Nothing here yet</span>No rounds have been posted for your group.</div>
+      </section>
+
+      <!-- ---------------------------------------------------- attendance -->
+      <section class="view-panel" id="view-attendance">
+        <div class="page-head"><div><h1>Attendance</h1><p>Mark yourself present for a session, or review your history.</p></div></div>
+
+        <div class="card">
+          <div class="card-head"><h2>Your season</h2></div>
+          <div id="seasonSummary"><p class="text-muted text-sm mb-0">No active season for your group yet.</p></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Report an absence in advance</h2><div class="card-sub">Reporting ahead of time counts as 1 missed point instead of 2.</div></div>
+          <form id="reportAbsenceForm" class="flex gap-8" style="align-items:flex-end; flex-wrap:wrap;">
+            <div class="field mb-0" style="flex:1; min-width:200px;">
+              <label for="reportDateSelect">Upcoming practice</label>
+              <select id="reportDateSelect"></select>
+            </div>
+            <button class="btn btn-primary" type="submit">Report absence</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Mark today</h2><div class="card-sub" id="todayLabel"></div></div>
+          <div id="markToday"><div class="skeleton" style="height:40px;"></div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Your history</h2></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Date</th><th>Status</th><th>Marked by</th></tr></thead>
+              <tbody id="attendanceTableBody"><tr><td colspan="3"><div class="skeleton" style="height:20px;"></div></td></tr></tbody>
+            </table>
+          </div>
+          <div id="attendanceEmpty" class="empty-state hidden"><span class="eyebrow">No records yet</span>Attendance you mark will show up here.</div>
+        </div>
+      </section>
+
+      <!-- ---------------------------------------------------------account -->
+      <section class="view-panel" id="view-account">
+        <div class="page-head"><div><h1>Account</h1><p>Your details and password.</p></div></div>
+        <div class="grid-2">
+          <div class="card">
+            <h2>Profile</h2>
+            <div class="field"><label>Name</label><div data-user-name>&nbsp;</div></div>
+            <div class="field"><label>Email</label><div data-user-email class="font-mono">&nbsp;</div></div>
+            <div class="field mb-0"><label>Group</label><div data-user-group>&nbsp;</div></div>
+            <p class="text-sm text-muted mt-16 mb-0">Your group is set by a coach. Ask them if it needs to change.</p>
+          </div>
+          <div class="card">
+            <h2>Change password</h2>
+            <form id="pwForm">
+              <div class="field"><label for="curPw">Current password</label><input type="password" id="curPw" required autocomplete="current-password"></div>
+              <div class="field"><label for="newPw">New password</label><input type="password" id="newPw" required minlength="8" autocomplete="new-password"></div>
+              <button class="btn btn-primary" type="submit">Update password</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js?v=2"></script>
+<script src="js/app.js"></script>
+<script src="js/student.js"></script>
+</body>
+</html>
