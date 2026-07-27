@@ -13,5 +13,5 @@
  * so visitors are guaranteed to get your latest change instead of a cached one.
  */
 window.BYD_CONFIG = {
-  API_URL: 's://script.google.com/macros/s/AKfycbx8q3GwGB2U2fRpLP0UG8SwVrmlWuDmp7NogE1atvNR7Tv05ZoGoINi-geFhTZbpAiZ/exec'
+  API_URL: 'https://script.google.com/macros/s/AKfycbx8q3GwGB2U2fRpLP0UG8SwVrmlWuDmp7NogE1atvNR7Tv05ZoGoINi-geFhTZbpAiZ/exec'
 };
