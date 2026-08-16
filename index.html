@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bellevue Youth Debate | Portal</title>
+<link rel="icon" href="assets/logo.webp">
+<link rel="stylesheet" href="css/styles.css?v=3">
+<style>
+  body.login-body { background: var(--ink); }
+  .login-shell { min-height: 100vh; display: flex; }
+  .login-hero {
+    flex: 1.15; background: var(--ink); color: #fff; padding: 56px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 31px, rgba(255,255,255,0.055) 32px);
+  }
+  .login-hero-top { display: flex; align-items: center; gap: 16px; }
+  .login-hero-top img { width: 68px; height: 68px; border-radius: 50%; background: #fff; padding: 3px; }
+  .login-hero-top .brand-mark-name { font-size: 26px; color: #fff; }
+  .login-hero h1 { color: #fff; font-size: 42px; max-width: 480px; margin: 32px 0 18px; line-height: 1.1; }
+  .login-hero .tagline { color: var(--text-on-ink-muted); max-width: 420px; font-size: 15px; margin: 0; }
+  .resolution-strip {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; line-height: 1.8;
+    color: var(--text-on-ink-muted);
+    border-top: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding: 16px 0; margin-top: 32px;
+  }
+  .resolution-strip b { color: #fff; letter-spacing: 0.08em; }
+  .login-panel { flex: 1; background: var(--paper); display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
+  .login-card { width: 100%; max-width: 400px; }
+  .login-card .card { margin-bottom: 0; }
+  .auth-foot { text-align: center; margin-top: 18px; }
+  @media (max-width: 880px) {
+    .login-shell { flex-direction: column; }
+    .login-hero { padding: 32px 24px; }
+    .login-hero h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body class="login-body">
+  <div class="login-shell">
+    <div class="login-hero">
+      <div>
+        <div class="login-hero-top">
+          <img src="assets/logo.webp" alt="Bellevue Youth Debate seal">
+          <div class="brand-mark-name">Bellevue Youth Debate</div>
+        </div>
+        <h1>Everything your team needs, in one place.</h1>
+        <p class="tagline">Homework, practice schedule, rounds, and pairings for students and coaches &mdash; one shared record that's always current.</p>
+      </div>
+      <div class="resolution-strip">
+        <b>Resolved:</b> Students and Coaches ought to have a shared, always-current record of homework, schedule, rounds, and pairings.
+      </div>
+    </div>
+
+    <div class="login-panel">
+      <div class="login-card">
+        <div class="tabs" id="authTabs">
+          <button class="tab-btn active" data-tab="login" type="button">Log in</button>
+          <button class="tab-btn" data-tab="signup" type="button">Sign up</button>
+        </div>
+
+        <div class="tab-panel active" id="panel-login">
+          <div class="card">
+            <form id="loginForm">
+              <div class="field">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" required autocomplete="username">
+              </div>
+              <div class="field">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" required autocomplete="current-password">
+              </div>
+              <button class="btn btn-primary btn-block" type="submit">Log in</button>
+              <div class="auth-foot text-sm">
+                <button type="button" class="link-btn" id="showForgot">Forgot password?</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="panel-signup">
+          <div class="card">
+            <form id="signupForm">
+              <div class="field">
+                <label for="suName">Full name</label>
+                <input type="text" id="suName" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="suEmail">Email</label>
+                <input type="email" id="suEmail" required autocomplete="username">
+              </div>
+              <div class="field">
+                <label for="suPassword">Password</label>
+                <input type="password" id="suPassword" required minlength="8" autocomplete="new-password">
+                <div class="hint">At least 8 characters.</div>
+              </div>
+              <div class="field">
+                <label for="suCode">Club code</label>
+                <input type="text" id="suCode" required placeholder="Ask your coach">
+              </div>
+              <button class="btn btn-primary btn-block" type="submit">Create account</button>
+              <p class="text-sm text-muted mt-16 mb-0">New accounts start in the "Unassigned" group &mdash; a coach will place you in your section.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js?v=3"></script>
+  <script src="js/app.js?v=3"></script>
+  <script src="js/login.js?v=3"></script>
+</body>
+</html>
